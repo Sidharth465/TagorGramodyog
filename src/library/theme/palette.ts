@@ -6,7 +6,7 @@ export default {
     black_shade_2: '#4A4949',
     white: '#FFF',
 
-    bw_green: '#35C881',
+    bw_green: '#00C696',
     spring_wood: '#FAF5F3',
     light_gray: '#F5F5F5',
     bw_yellow: '#F3B343',
@@ -29,5 +29,14 @@ export default {
 
     chipBgColor:"#F7F7F7",
     darkBlue:"#008DFF",
-    linkBlue:"#CCE8FF"
+    linkBlue:"#CCE8FF",
+    light_green:"#74FFAC",
+    light_green_shade1:"#00C696",
+    orange:"#FFD480",
+    orange_shade1:"#FF8E8E",
+     light_yellow:"#F0FF91",
+     chip_box:"#EDEDED",
+     bg_lang:"#FFC8C8"
+
+
 }

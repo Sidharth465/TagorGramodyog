@@ -75,6 +75,7 @@ const theme = createTheme({
     },
     textVariants: {
         defaults: {
+            
 
         },
         announce_v1: {
