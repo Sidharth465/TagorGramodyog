@@ -52,6 +52,7 @@ export default function Otp({ setOtpVisible }: any) {
                 <Pressable onPress={() => setOtpVisible(false)}>
 
                   <Text
+                  opacity={0.6}
                     fontWeight={"500"}
                     fontSize={15}
                     textDecorationLine="underline"
@@ -82,7 +83,7 @@ export default function Otp({ setOtpVisible }: any) {
               </SWView>
               <SWView marginTop="m"  justifyContent="center" alignItems="center">
               <SVButton
-              disabled = {otp?.length !== 4}
+              // disabled = {otp?.length !== 4}
                 height={31}
                 paddingHorizontal="l"
                 surface="background"

@@ -43,13 +43,21 @@ const theme = createTheme({
 
         // sid color 
         dateBarBorderColor:palette.darkBlue,
-        dateBarBackground:palette.linkBlue
+        dateBarBackground:palette.linkBlue,
+        list_background:palette?.list_background,
+        bg_lang:palette?.bg_lang,
+        chip_box:palette?.chip_box,
+        link_tile_bg:palette.linktile_bg,
+        errorRed:"#FF0000"
+        
+
 
 
     },
    
     spacing: {
         none: 0,
+        sss:2,
         ss: 4,
         s: 8,
         ms: 16,

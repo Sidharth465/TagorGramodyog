@@ -36,7 +36,11 @@ export default {
     orange_shade1:"#FF8E8E",
      light_yellow:"#F0FF91",
      chip_box:"#EDEDED",
-     bg_lang:"#FFC8C8"
+     bg_lang:"#FFC8C8",
+     list_background:"#D9D9D9",
+     linktile_bg:"#F1F1F1"
+     
+
 
 
 }

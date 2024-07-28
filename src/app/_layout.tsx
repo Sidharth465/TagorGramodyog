@@ -3,6 +3,8 @@ import { ThemeProvider } from "@shopify/restyle";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import theme from "../library/theme/theme";
+import { Provider } from "react-redux";
+import { store } from "../library/redux/store";
 
 
 
@@ -21,6 +23,7 @@ export default function Layout() {
   });
   if (!fontsLoaded) return <></>;
   return (
+    <Provider store={store}>
    <ThemeProvider theme={theme} >
           <Stack
             screenOptions={({ navigation }) => ({
@@ -35,11 +38,12 @@ export default function Layout() {
             })}
           >
             <Stack.Screen options={{headerShown:false,title:"Login"}} name="index" />
-            <Stack.Screen name = "Register"options={{headerShown:true,title:"Register"}}  />
-            <Stack.Screen name = "SelectCity"options={{headerShown:true,title:"SelectCity"}}  />
+            <Stack.Screen name = "Register"options={{headerShown:false,title:"Register"}}  />
+            <Stack.Screen name = "SelectCity"options={{headerShown:false,title:"SelectCity"}}  />
 
           </Stack>
           </ThemeProvider>
+          </Provider>
          
   );
 }

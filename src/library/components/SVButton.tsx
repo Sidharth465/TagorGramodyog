@@ -35,7 +35,8 @@ type BWButtonType = {
   textVariant?:"gilroy-bold"
   borderColor?: keyof Theme["colors"];
   shadow?:boolean,
-  fontSize?:number
+  fontSize?:number, 
+  textColor?: keyof Theme["colors"]
 };
 
 type ResponsiveTextVariant = {
@@ -44,6 +45,7 @@ type ResponsiveTextVariant = {
   largeTablet?: keyof Theme["textVariants"];
 };
 const SVButton = ({
+  textColor="text_on_secondary",
   surface = "secondary",
   title = "",
   height = 31,
@@ -104,7 +106,7 @@ const SVButton = ({
     >
       <Animated.View style={buttonStyle}>
         <BWView
-          backgroundColor={disabled ? "surface_light" : surface}
+          backgroundColor={disabled ? "list_background" : surface}
           height={height}
           borderRadius={"ss"}
           justifyContent={"center"}
@@ -127,7 +129,7 @@ const SVButton = ({
           ) : (
             <Text
               fontFamily={textVariant}
-              color={`text_on_${surface}`}
+              color={disabled ?"text_on_secondary":textColor}
               opacity={disabled ? 0.3 : 1}
               fontSize={fontSize}
             >

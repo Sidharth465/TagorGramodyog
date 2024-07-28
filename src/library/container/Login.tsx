@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import SWView from "../components/SView";
-import { Image, TextInput } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import theme from "../theme/theme";
-import palette from "../theme/palette";
-import Text from "../components/SVText";
-import SVButton from "../components/SVButton";
 import { FacebookSvg, InstagramSvg, LinkedInSvg, TwitterSvg } from "@/src/utils/Svgs";
-import { Link } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import React, { useState } from "react";
+import { Image, TextInput } from "react-native";
 import Animated, { SlideInLeft } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
+import SVButton from "../components/SVButton";
+import SWView from "../components/SView";
+import Text from "../components/SVText";
+import { useAppDispatch } from "../redux/hooks";
+import { updateMobileNumber } from "../redux/slices/appSlice";
+import palette from "../theme/palette";
+import theme from "../theme/theme";
 
 export default function Login({setOtpVisible}:any) {
     const [mobileNumber,setMobileNumber] = useState("")
+    const dispatch = useAppDispatch()
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -44,6 +46,7 @@ export default function Login({setOtpVisible}:any) {
             </Text>
             <SWView marginTop="m">
               <TextInput
+              value={mobileNumber}
               keyboardType="numeric"
               maxLength={10}
               onChangeText={(t)=>setMobileNumber(t)}
@@ -54,17 +57,18 @@ export default function Login({setOtpVisible}:any) {
                   borderRadius: theme?.spacing?.ss,
                   paddingLeft: 20,
                 }}
-                placeholder="Mobile no"
+                placeholder=" Enter Mobile "
               />
             </SWView>
             <SWView marginTop="m"  justifyContent="center" alignItems="center">
               <SVButton
-              disabled = {mobileNumber?.length !== 10}
+              
+              // disabled = {mobileNumber?.length !== 10}
                 height={31}
                 paddingHorizontal="l"
                 surface="background"
                 title="Next"
-                onPress={()=>setOtpVisible(true)}
+                onPress={()=>{setOtpVisible(true),dispatch(updateMobileNumber(mobileNumber))}}
               />
             </SWView>
           </SWView>
