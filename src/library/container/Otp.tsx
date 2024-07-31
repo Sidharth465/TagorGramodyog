@@ -1,17 +1,17 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { router, usePathname } from "expo-router";
 import React, { useState } from "react";
 import { Image, Pressable } from "react-native";
-import Animated, { SlideInLeft, SlideInRight } from "react-native-reanimated";
+import { OtpInput } from "react-native-otp-entry";
+import Animated, { Easing, SlideInRight, } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SVButton from "../components/SVButton";
 import SWView from "../components/SView";
 import Text from "../components/SVText";
-import palette from "../theme/palette";
-import theme from "../theme/theme";
-import { OtpInput } from "react-native-otp-entry";
-import SVButton from "../components/SVButton";
-import { router, usePathname } from "expo-router";
 import { useAppDispatch } from "../redux/hooks";
 import { setOtpVisible } from "../redux/slices/appSlice";
+import palette from "../theme/palette";
+import theme from "../theme/theme";
 
 export default function Otp() {
   const [otp, setOtp] = useState("");
@@ -20,7 +20,7 @@ const dispatch = useAppDispatch()
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <Animated.View
-        entering={SlideInRight}
+        entering={SlideInRight.easing(Easing.ease).duration(300)}
         
         style={{ flex: 1, paddingHorizontal: 20 }}
       >
@@ -36,7 +36,7 @@ const dispatch = useAppDispatch()
         <SWView margin="m">
           <LinearGradient
             style={{
-              height: 181,
+              height: 190,
               width: "100%",
               borderRadius: theme?.spacing?.s,
             }}

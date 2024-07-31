@@ -2,7 +2,7 @@ import { FacebookSvg, InstagramSvg, LinkedInSvg, TwitterSvg } from "@/src/utils/
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Image, TextInput } from "react-native";
-import Animated, { SlideInLeft } from "react-native-reanimated";
+import Animated, { Easing, SlideInLeft } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SVButton from "../components/SVButton";
 import SWView from "../components/SView";
@@ -18,7 +18,7 @@ export default function Login() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        < Animated.View exiting={SlideInLeft} style={{ flex: 1 }} >
+        < Animated.View entering={SlideInLeft.easing(Easing.ease).duration(300)} style={{ flex: 1 }} >
       <SWView  justifyContent="center" alignItems="center" marginTop="m">
         <Image
         resizeMode="cover"

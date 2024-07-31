@@ -23,6 +23,7 @@ import {
 
 
 const Home = () => {
+
   const data = [
     {
       icon: <TableReportSvg />,
@@ -78,6 +79,7 @@ const Home = () => {
         />
 
         <SWView
+
           position="absolute"
           top={"20%"}
           justifyContent="center"
@@ -85,10 +87,10 @@ const Home = () => {
           flexWrap="wrap"
         >
           {data.map((item, index) => (
-            <Pressable key={item?.title} style={{ margin: 10 }} onPress={()=>handlePress(item?.title)}>
+            <Pressable  key={item?.title} style={{ margin: 10 }} onPress={()=>handlePress(item?.title)}>
               <LinearGradient
                 style={{
-                  height: 120,
+                  height: 130,
                   width: 158,
                   borderRadius: 10,
                 }}

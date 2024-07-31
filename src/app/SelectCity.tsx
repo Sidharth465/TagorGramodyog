@@ -4,12 +4,12 @@ import { FlatList, Image, Pressable } from "react-native";
 import SVHeader from "../library/components/SVHeader";
 import SWView from "../library/components/SView";
 import Text from "../library/components/SVText";
-
 import { useAppDispatch } from "../library/redux/hooks";
 import { updateCity } from "../library/redux/slices/appSlice";
 import { router } from "expo-router";
 
 const SelectCity = () => {
+  
   const dispatch = useAppDispatch()
   const data = [
     { id: 0, city: "Delhi" },
