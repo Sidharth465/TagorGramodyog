@@ -7,14 +7,45 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SVButton from "../components/SVButton";
 import SWView from "../components/SView";
 import Text from "../components/SVText";
-import { useAppDispatch } from "../redux/hooks";
-import { setOtpVisible, updateMobileNumber } from "../redux/slices/appSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { setOtpVisible, updateLoginCredentials } from "../redux/slices/appSlice";
 import palette from "../theme/palette";
 import theme from "../theme/theme";
+import Toast from "react-native-toast-message";
 
 export default function Login() {
     const [mobileNumber,setMobileNumber] = useState("")
     const dispatch = useAppDispatch()
+    const {roleBaseLogin,otpVisible} =  useAppSelector((state)=>state.appSlice)
+
+    // console.log("credential",roleBaseLogin,"otpVisible",otpVisible);
+    
+
+    function handleLogin(){
+    Toast.show({type:"info",text1:"Running"})
+      try {
+        // console.log("running");
+        
+        
+         if(roleBaseLogin?.otp?.length ==0 ){
+          console.log("sending exist otp");
+          let sentOtp = Math.floor(1000 + Math.random() * 9000);
+          dispatch(setOtpVisible(true))
+           dispatch(updateLoginCredentials({mobile_number:mobileNumber,role:mobileNumber == "8744098062"?"admin":"user",otp:sentOtp}))
+           Toast.show({type:"success",text1:`OTP ${sentOtp}`,text2:"please fill the otp to login !",visibilityTime:6000})
+         }else{
+          console.log("already exist otp");
+          
+          Toast.show({type:"success",text1:`OTP ${roleBaseLogin?.otp}`,text2:"please fill the otp to login !",visibilityTime:6000})
+          dispatch(setOtpVisible(true))
+         }
+         
+          
+        
+      } catch (error) {
+        
+      }
+    }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -68,7 +99,7 @@ export default function Login() {
                 paddingHorizontal="l"
                 surface="background"
                 title="Next"
-                onPress={()=>{dispatch(setOtpVisible(true),updateMobileNumber(mobileNumber))}}
+                onPress={handleLogin}
               />
             </SWView>
           </SWView>

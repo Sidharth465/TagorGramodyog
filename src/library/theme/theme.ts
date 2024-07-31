@@ -48,7 +48,8 @@ const theme = createTheme({
         bg_lang:palette?.bg_lang,
         chip_box:palette?.chip_box,
         link_tile_bg:palette.linktile_bg,
-        errorRed:"#FF0000"
+        errorRed:"#FF0000",
+        textinput_border:palette?.textinput_border
         
 
 
@@ -73,7 +74,9 @@ const theme = createTheme({
     borderRadii: {
         negatives:-20,
         none: 0,
+        sss:2,
         ss: 4,
+        sx:5,
         s: 10,
         ms: 18,
         m: 20,

@@ -19,15 +19,17 @@ import {
   Image,
   Pressable,
 } from "react-native";
+import { useAppSelector } from "@/src/library/redux/hooks";
 
 
 
 const Home = () => {
+  const {roleBaseLogin} =  useAppSelector((state)=>state.appSlice)
 
-  const data = [
+  const dataAdmin = [
     {
       icon: <TableReportSvg />,
-      title: "My Complaints",
+      title: "All Complaints",
       desc: "We are commited to recieving your complaints",
     },
     { icon: <SiteSvg />, title: "Sites", desc: "Check our latest work" },
@@ -38,13 +40,23 @@ const Home = () => {
     },
     { icon: <FeedbackSvg />, title: "Provide Feedback", desc: "Scan QR code" },
   ];
+  const dataUser = [
+    {
+      icon: <TableReportSvg />,
+      title: "My Complaints",
+      desc: "We are commited to recieving your complaints",
+    },
+    { icon: <SiteSvg />, title: "Sites", desc: "Check our latest work" },
+   
+    { icon: <FeedbackSvg />, title: "Provide Feedback", desc: "Scan QR code" },
+  ];
 
 
  
 
 
   function handlePress(title:string){
-    if(title == "My Complaints"){
+    if(title == "My Complaints" || title == "All Complaints"){
       console.log("My Complaints")
       router.push("/mycomplaints")
     }else if(title == "Sites"){
@@ -79,20 +91,21 @@ const Home = () => {
         />
 
         <SWView
-
+        // borderWidth={1}
           position="absolute"
-          top={"20%"}
-          justifyContent="center"
-          flexDirection="row"
+          top={roleBaseLogin.role == "admin"?"20%":"10%"}
+          justifyContent={roleBaseLogin.role == "admin"?"center":"flex-start"}
+          flexDirection={roleBaseLogin?.role == "admin"?"row":"column"}
           flexWrap="wrap"
         >
-          {data.map((item, index) => (
+          {(roleBaseLogin?.role == "admin"?dataAdmin:dataUser).map((item, index) => (
             <Pressable  key={item?.title} style={{ margin: 10 }} onPress={()=>handlePress(item?.title)}>
               <LinearGradient
                 style={{
-                  height: 130,
-                  width: 158,
+                  height: roleBaseLogin.role == "admin"?130:130,
+                  width: roleBaseLogin.role == "admin"?158:Dimensions?.get("screen").width*0.9,
                   borderRadius: 10,
+                  paddingHorizontal: roleBaseLogin.role == "admin"?0:10,
                 }}
                 colors={[
                   index == 0 || index == 3 ? "#00C696" : "#FFD480",
@@ -113,7 +126,7 @@ const Home = () => {
                     <Text fontSize={18} fontFamily="gilroy-bold">
                       {item?.title}
                     </Text>
-                    <Text fontSize={10} fontFamily="gilroy-medium">
+                    <Text opacity={0.7} fontSize={roleBaseLogin.role == "admin"?10:15} fontFamily="gilroy-medium">
                       {item?.desc}
                     </Text>
                   </SWView>

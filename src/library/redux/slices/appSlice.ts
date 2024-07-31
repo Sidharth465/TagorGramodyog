@@ -1,7 +1,23 @@
 import {PayloadAction,createSlice} from "@reduxjs/toolkit"
-const initialState = {
-    mobile_number:null,
+interface RoleBaseLogin{
+    mobile_number:string,
+    role:string,
+    otp:string,
+    
+
+}
+interface State{
+    roleBaseLogin: RoleBaseLogin;
+    selectedCity: string;
+    selectedArea: string;
+    otpVisible: boolean;
+
+}
+
+const initialState:State = {
+    roleBaseLogin:{mobile_number:"8744098062",role:"admin",otp:"",},
     selectedCity:"",
+    selectedArea:"",
     otpVisible:false
 }
 
@@ -9,11 +25,14 @@ export const appSlice = createSlice({
     name:"appSLice",
     initialState,
       reducers:{
-        updateMobileNumber:(state,action)=>{   
-            state.mobile_number = action.payload
+        updateLoginCredentials:(state,action)=>{   
+            state.roleBaseLogin = action.payload
             },
             updateCity:(state,action)=>{
                 state.selectedCity = action.payload
+                },
+            updateArea:(state,action)=>{
+                state.selectedArea = action.payload
                 },
                 setOtpVisible:(state,action)=>{
                     state.otpVisible = action.payload
@@ -23,5 +42,5 @@ export const appSlice = createSlice({
 
 });
 
-export const {updateMobileNumber,updateCity,setOtpVisible} = appSlice?.actions;
+export const {updateLoginCredentials,updateCity,setOtpVisible} = appSlice?.actions;
 export default  appSlice.reducer

@@ -6,15 +6,18 @@ import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import theme from "@/src/library/theme/theme";
 import { GlobeSvg, LockSvg, Logout, NotificationSvg } from "@/src/utils/Svgs";
 import { router } from "expo-router";
-import { useAppDispatch } from "@/src/library/redux/hooks";
-import { setOtpVisible } from "@/src/library/redux/slices/appSlice";
+import { useAppDispatch, useAppSelector } from "@/src/library/redux/hooks";
+import { setOtpVisible, updateLoginCredentials } from "@/src/library/redux/slices/appSlice";
+
 
 export function Linktile({ title, type }: any) {
   const dispatch = useAppDispatch()
+  
   function handlePress (){
    
     
     if(type ==4 ){
+      dispatch(updateLoginCredentials({mobile_number:"8744098062",role:"admin",otp:""}))
        console.log("pressed");
 dispatch(setOtpVisible(false))
        router.replace("/")
@@ -54,6 +57,7 @@ dispatch(setOtpVisible(false))
 }
 
 const Profile = () => {
+  const {roleBaseLogin} = useAppSelector((state)=>state.appSlice)
   return (
     <SWView
       flex={1}
@@ -74,7 +78,7 @@ const Profile = () => {
             Manoj Kumar
           </Text>
           <Text fontFamily="gilroy-medium" fontSize={16}>
-            +9173x862x959
+        {roleBaseLogin?.mobile_number}
           </Text>
          </SWView>
          <SWView flex={1} alignItems="flex-end" justifyContent="flex-end"  paddingRight="ll" paddingBottom="ll">

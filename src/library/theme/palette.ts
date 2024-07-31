@@ -38,7 +38,8 @@ export default {
      chip_box:"#EDEDED",
      bg_lang:"#FFC8C8",
      list_background:"#D9D9D9",
-     linktile_bg:"#F1F1F1"
+     linktile_bg:"#F1F1F1",
+     textinput_border:"#C6C6C6"
      
 
 

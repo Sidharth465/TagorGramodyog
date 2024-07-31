@@ -1,10 +1,12 @@
+import React from "react";
 
 import { ThemeProvider } from "@shopify/restyle";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import theme from "../library/theme/theme";
 import { Provider } from "react-redux";
 import { store } from "../library/redux/store";
+import theme from "../library/theme/theme";
+import Toast from "react-native-toast-message";
 
 
 
@@ -40,8 +42,10 @@ export default function Layout() {
             <Stack.Screen options={{headerShown:false,title:"Login"}} name="index" />
             <Stack.Screen name = "Register"options={{headerShown:false,title:"Register"}}  />
             <Stack.Screen name = "SelectCity"options={{headerShown:false,title:"SelectCity"}}  />
+            <Stack.Screen name = "SelectArea" options={{headerShown:false,title:"SelectCity"}}  />
 
           </Stack>
+          <Toast/>
           </ThemeProvider>
           </Provider>
          

@@ -16,6 +16,9 @@ const Sites = () => {
   const [showFillForm, setShowFillForm] = useState(false);
 
   const {imageComplaints} = useAppSelector((state)=>state?.complaintsSlice)
+  const {roleBaseLogin} = useAppSelector((state)=>state.appSlice)
+  const {complaints} = useAppSelector((state)=>state.complaintsSlice)
+
 
   
 
@@ -26,14 +29,8 @@ const Sites = () => {
     setShowFillForm(true);
   }
 
-  const dropDownDAta = [
-    { label: "Subhash Nagar", value: "sn" },
-    { label: "Khayala", value: "kh" },
-    { label: "Paschim Puri", value: "pp" },
-    { label: "Punjabi Bagh", value: "pb" },
-    { label: "Seelampur", value: "sp" },
-  ];
-  const renderItem = (item) => {
+  
+   const renderItem = (item) => {
     return (
       <View style={styles.item}>
         <Text style={styles.textItem}>{item.label}</Text>
@@ -51,7 +48,10 @@ const Sites = () => {
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
-          data={dropDownDAta}
+          data={complaints?.map((item) => ({
+            label: item?.location,
+            value: item?.location,
+          }))}
           search
           maxHeight={300}
           labelField="label"
@@ -130,7 +130,7 @@ const Sites = () => {
 
         </SWView>
       </SWView>
-      <FloatingAddButton onPress={onOpen} right={10} bottom={10} />
+      {roleBaseLogin?.role == "admin" && <FloatingAddButton onPress={onOpen} right={10} bottom={10} />}
       <UploadImageComplaints visible={showFillForm} onClose={onClose} />
       
       {showFillForm && <Backdrop />}

@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Button, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import theme from '../theme/theme';
 import React from 'react';
+import SVButton from './SVButton';
+import SWView from './SView';
 
-export default function QrcodeScanner({ onClose,visible }: any) {
+export default function QrcodeScanner({ onClose,visible,setLocation }: any) {
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
@@ -12,15 +14,17 @@ export default function QrcodeScanner({ onClose,visible }: any) {
   const [scannedData, setScannedData] = useState('');
 
  
-  const handleBarCodeScanned = ({ type, data }:any) => {
+  const handleBarCodeScanned = ({ type, data="Shahadara" }:any) => {
     if (!scanned) {
       setScanned(true);
       setScannedData(`Bar code with type ${type} and data ${data} has been scanned!`);
       setModalVisible(true);
+      
     }
   };
 
   const handleModalClose = () => {
+    setLocation("Shahadara")
     setModalVisible(false);
     setScanned(false); // Reset scanned state to allow further scans
     onClose(); // Close the scanner view if needed
@@ -54,6 +58,9 @@ export default function QrcodeScanner({ onClose,visible }: any) {
         enableTorch={false}
 
       />
+<SWView alignItems='center' marginTop='l'>
+<SVButton surface='errorRed' textColor='background' fontSize={18}  height={45}  width={200} title='Close' onPress={onClose} />
+</SWView>
       
 
       {/* Modal for displaying scanned data */}

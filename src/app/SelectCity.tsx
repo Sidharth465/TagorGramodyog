@@ -12,14 +12,14 @@ const SelectCity = () => {
   
   const dispatch = useAppDispatch()
   const data = [
-    { id: 0, city: "Delhi" },
-    { id: 1, city: "Meerut" },
-    { id: 2, city: "Moradabad" },
+    { id: 0, city: "Delhi",value:"delhiColonies" },
+    { id: 1, city: "Haryana",value:"haryanaCities" },
+    { id: 2, city: "Rajasthan",value:"rajasthanCities" },
   ];
   const handlePress = (city:string) => {
     console.log("Tapped city:", city);
     dispatch(updateCity(city)); // Assuming you want to dispatch an action
-router?.push("/(tabs)/(stack)")
+router?.push("/SelectArea")
   };
   return (
     <SafeAreaView style={{flex:1,backgroundColor:"#FFFF" }} >
@@ -33,7 +33,7 @@ router?.push("/(tabs)/(stack)")
         <FlatList
           data={data}
           renderItem={({ item, index }) => (
-           <Pressable  key={item?.id} onPress={()=>handlePress(item?.city)} style={{marginHorizontal:18,marginBottom:10,borderRadius:10}} >
+           <Pressable  key={item?.id} onPress={()=>handlePress(item?.value)} style={{marginHorizontal:18,marginBottom:10,borderRadius:10}} >
              <SWView
               // marginHorizontal="m"
               justifyContent="center"

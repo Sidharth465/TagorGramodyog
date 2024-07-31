@@ -8,15 +8,31 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import SVButton from "../components/SVButton";
 import SWView from "../components/SView";
 import Text from "../components/SVText";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { setOtpVisible } from "../redux/slices/appSlice";
 import palette from "../theme/palette";
 import theme from "../theme/theme";
+import Toast from "react-native-toast-message";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function Otp() {
+  const dispatch = useAppDispatch()
   const [otp, setOtp] = useState("");
   const pathname = usePathname()
-const dispatch = useAppDispatch()
+  const {roleBaseLogin} =  useAppSelector((state)=>state.appSlice)
+  // console.log("at OTP screen Credentials",roleBaseLogin);
+  function resendOtp(){
+    Toast.show({type:"success",text1:`OTP ${roleBaseLogin?.otp}`,text2:"please fill the otp to login !",visibilityTime:6000})
+  }
+  function handleOtpSubmit (){
+    if(otp == roleBaseLogin?.otp){
+      router?.push("/SelectCity")
+    }else{
+      Toast.show({type:"error",text1:"Wrong OTP",text2:"Please fill correct otp !"})
+      setOtp("")
+    }
+  }
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <Animated.View
@@ -44,13 +60,19 @@ const dispatch = useAppDispatch()
           >
             <SWView flex={1} flexDirection="column" padding="ms">
               <SWView flexDirection="row" justifyContent="space-between">
-                <SWView>
-                  <Text opacity={0.8} fontFamily="gilroy-bold" fontSize={20}>
+                <SWView flexDirection="column">
+                 <SWView gap="s" flexDirection="row" alignItems="center">
+                 <Text opacity={0.8} fontFamily="gilroy-bold" fontSize={20}>
                     Enter OTP
                   </Text>
+                 <Pressable onPress={resendOtp}>
+                 <FontAwesome name="refresh" size={18} color={theme?.colors?.text_with_opacity} />
+                 </Pressable>
+                 </SWView>
                   <Text opacity={0.6} fontFamily="gilroy-medium" fontSize={12}>
                     OTP has been sent
                   </Text>
+                 
                 </SWView>
                 <Pressable onPress={() => dispatch(setOtpVisible(false))}>
 
@@ -91,7 +113,7 @@ const dispatch = useAppDispatch()
                 paddingHorizontal="l"
                 surface="background"
                 title="Submit"
-                        onPress={()=>router?.push("/SelectCity")}
+                        onPress={()=>handleOtpSubmit()}
               />
             </SWView>
             </SWView>

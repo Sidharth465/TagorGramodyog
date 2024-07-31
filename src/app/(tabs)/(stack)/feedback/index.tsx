@@ -123,7 +123,7 @@ const ProvideFeedback = () => {
   
   return (
     <SafeAreaView style={{flex:1,backgroundColor:"#FFFF"}}>
-    <SVHeader title='My Complaints' visibleButton />
+    <SVHeader title='My Feedback' visibleButton />
       <SWView  backgroundColor='background' justifyContent='center' alignItems='center' marginTop='m'>
         <FlatList showsVerticalScrollIndicator = {false} data={garbageCollectionData} renderItem={RenderList} />
 
