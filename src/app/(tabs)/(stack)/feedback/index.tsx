@@ -1,9 +1,13 @@
-import {  SafeAreaView, FlatList } from 'react-native'
-import React from 'react'
+import { FlatList } from 'react-native'
+import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useEffect, useState } from 'react'
 import SWView from '@/src/library/components/SView'
 import SVHeader from '@/src/library/components/SVHeader'
 import Text from '@/src/library/components/SVText'
 import FloatingAddButton from '@/src/library/components/FloatingAddButton'
+import QrcodeScanner from '@/src/library/components/QrcodeScanner'
+import AddComplaintsForm from '@/src/library/container/AddComplaintsForm'
+import Backdrop from '@/src/library/container/Backdrop'
 
 
 
@@ -88,15 +92,46 @@ const ProvideFeedback = () => {
       description: 'Seasonal cleanup event focusing on public parks and streets. Volunteers are welcome to assist.'
     }
   ];
+
+  const [showScanner, setShowScanner] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  function onClose() {
+    setShowScanner(false);
+  }
+  function onOpen() {
+    setShowScanner(true);
+  }
+
+  function closeForm() {
+    setShowForm(false);
+  }
+  function openForm() {
+    setShowForm(true);
+  }
+  useEffect(() => {
+    if (showScanner) {
+      // Set a timer to run the onClose function after 3 seconds
+      const timer = setTimeout(() => {
+        onClose();
+        openForm()
+      }, 2000);
+  
+      // Cleanup function to clear the timeout if the component is unmounted or if 'visible' changes
+      return () => clearTimeout(timer);
+    }
+  }, [showScanner]);
   
   return (
     <SafeAreaView style={{flex:1,backgroundColor:"#FFFF"}}>
     <SVHeader title='My Complaints' visibleButton />
-      <SWView flex={1} backgroundColor='background' justifyContent='center' alignItems='center' marginTop='m'>
+      <SWView  backgroundColor='background' justifyContent='center' alignItems='center' marginTop='m'>
         <FlatList showsVerticalScrollIndicator = {false} data={garbageCollectionData} renderItem={RenderList} />
 
     </SWView>
-    <FloatingAddButton  bottom = {4} right={10}/>
+    <FloatingAddButton onPress={onOpen}  bottom = {4} right={10}/>
+    <AddComplaintsForm visible ={showForm} onClose={closeForm} />
+    {showScanner &&<QrcodeScanner visible = {showScanner} onClose={onClose}/>}
+    {showForm && <Backdrop />}
     </SafeAreaView>
   )
 }

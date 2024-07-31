@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import { Image, Pressable } from "react-native";
-import Animated, { SlideInRight } from "react-native-reanimated";
+import Animated, { SlideInLeft, SlideInRight } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SWView from "../components/SView";
 import Text from "../components/SVText";
@@ -10,15 +10,18 @@ import theme from "../theme/theme";
 import { OtpInput } from "react-native-otp-entry";
 import SVButton from "../components/SVButton";
 import { router, usePathname } from "expo-router";
+import { useAppDispatch } from "../redux/hooks";
+import { setOtpVisible } from "../redux/slices/appSlice";
 
-export default function Otp({ setOtpVisible }: any) {
+export default function Otp() {
   const [otp, setOtp] = useState("");
   const pathname = usePathname()
-
+const dispatch = useAppDispatch()
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <Animated.View
         entering={SlideInRight}
+        
         style={{ flex: 1, paddingHorizontal: 20 }}
       >
         <SWView justifyContent="center" alignItems="center" marginTop="m">
@@ -49,7 +52,7 @@ export default function Otp({ setOtpVisible }: any) {
                     OTP has been sent
                   </Text>
                 </SWView>
-                <Pressable onPress={() => setOtpVisible(false)}>
+                <Pressable onPress={() => dispatch(setOtpVisible(false))}>
 
                   <Text
                   opacity={0.6}
@@ -83,7 +86,7 @@ export default function Otp({ setOtpVisible }: any) {
               </SWView>
               <SWView marginTop="m"  justifyContent="center" alignItems="center">
               <SVButton
-              // disabled = {otp?.length !== 4}
+              disabled = {otp?.length !== 4}
                 height={31}
                 paddingHorizontal="l"
                 surface="background"

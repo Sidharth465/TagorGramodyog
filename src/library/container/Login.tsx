@@ -8,17 +8,17 @@ import SVButton from "../components/SVButton";
 import SWView from "../components/SView";
 import Text from "../components/SVText";
 import { useAppDispatch } from "../redux/hooks";
-import { updateMobileNumber } from "../redux/slices/appSlice";
+import { setOtpVisible, updateMobileNumber } from "../redux/slices/appSlice";
 import palette from "../theme/palette";
 import theme from "../theme/theme";
 
-export default function Login({setOtpVisible}:any) {
+export default function Login() {
     const [mobileNumber,setMobileNumber] = useState("")
     const dispatch = useAppDispatch()
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-        < Animated.View style={{ flex: 1 }} entering={SlideInLeft}>
+        < Animated.View exiting={SlideInLeft} style={{ flex: 1 }} >
       <SWView  justifyContent="center" alignItems="center" marginTop="m">
         <Image
         resizeMode="cover"
@@ -63,12 +63,12 @@ export default function Login({setOtpVisible}:any) {
             <SWView marginTop="m"  justifyContent="center" alignItems="center">
               <SVButton
               
-              // disabled = {mobileNumber?.length !== 10}
+              disabled = {mobileNumber?.length !== 10}
                 height={31}
                 paddingHorizontal="l"
                 surface="background"
                 title="Next"
-                onPress={()=>{setOtpVisible(true),dispatch(updateMobileNumber(mobileNumber))}}
+                onPress={()=>{dispatch(setOtpVisible(true),updateMobileNumber(mobileNumber))}}
               />
             </SWView>
           </SWView>

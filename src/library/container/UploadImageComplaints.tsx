@@ -53,7 +53,7 @@ const UploadImageComplaints = ({visible,onClose}:any) => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchCameraAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
-          allowsEditing: true,
+          allowsEditing: false,
           quality: 1,
         });
     

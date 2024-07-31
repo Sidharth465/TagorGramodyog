@@ -1,5 +1,6 @@
 import React from "react";
-import { FlatList, Image, Pressable, SafeAreaView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, Image, Pressable } from "react-native";
 import SVHeader from "../library/components/SVHeader";
 import SWView from "../library/components/SView";
 import Text from "../library/components/SVText";

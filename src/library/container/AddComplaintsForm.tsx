@@ -104,7 +104,7 @@ const AddComplaintsForm = ({ visible, onClose }: any) => {
                 
                 <SWView flexDirection="column" gap="ss">
                     <Text fontFamily="gilroy-bold" fontSize={15}>Details</Text>
-                    <TextInput value={details} onChangeText={(text)=>setDetails(text)} cursorColor={"grey"} multiline textAlignVertical="top"  style={{height:Dimensions?.get("screen").height*0.35,width:300,borderWidth:2,borderColor:"#C6C6C6",borderRadius:5,paddingTop:5,paddingLeft:10}} />
+                    <TextInput value={details} onChangeText={(text)=>setDetails(text)} cursorColor={"grey"} multiline textAlignVertical="top" style={{height:150,width:300,borderWidth:2,borderColor:"#C6C6C6",borderRadius:5,paddingTop:5,paddingLeft:10}} />
 
                 </SWView>
 

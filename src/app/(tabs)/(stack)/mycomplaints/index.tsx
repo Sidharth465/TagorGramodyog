@@ -1,9 +1,12 @@
-import {  SafeAreaView, FlatList } from 'react-native'
-import React from 'react'
+import {  FlatList } from 'react-native'
+import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useState } from 'react'
 import SWView from '@/src/library/components/SView'
 import SVHeader from '@/src/library/components/SVHeader'
 import Text from '@/src/library/components/SVText'
 import FloatingAddButton from '@/src/library/components/FloatingAddButton'
+import Backdrop from '@/src/library/container/Backdrop'
+import AddComplaintsForm from '@/src/library/container/AddComplaintsForm'
 
 
 
@@ -26,6 +29,7 @@ const RenderList=({item}:any)=>{
 }
 
 const MyComplaints = () => {
+  const [showFillForm, setShowFillForm] = useState(false);
   const garbageCollectionData = [
     {
       title: "Garbage Collection",
@@ -88,15 +92,26 @@ const MyComplaints = () => {
       description: 'Seasonal cleanup event focusing on public parks and streets. Volunteers are welcome to assist.'
     }
   ];
+
+  function onClose() {
+    setShowFillForm(false);
+  }
+  function onOpen() {
+    setShowFillForm(true);
+  }
+
+
   
   return (
     <SafeAreaView style={{flex:1,backgroundColor:"#FFFF"}}>
     <SVHeader title='My Complaints' visibleButton />
-      <SWView flex={1} backgroundColor='background' justifyContent='center' alignItems='center' marginTop='m'>
+      <SWView  backgroundColor='background' justifyContent='center' alignItems='center' marginTop='m'>
         <FlatList showsVerticalScrollIndicator = {false} data={garbageCollectionData} renderItem={RenderList} />
 
     </SWView>
-    <FloatingAddButton  bottom = {4} right={10}/>
+    <FloatingAddButton onPress={onOpen} bottom = {4} right={10}/>
+    <AddComplaintsForm  visible={showFillForm} onClose={onClose} />
+    {showFillForm && <Backdrop />}
     </SafeAreaView>
   )
 }

@@ -14,11 +14,10 @@ type PageHeaderType = {
 
 const LogoHeader = ({ surface = "background",title}: PageHeaderType) => {
 
-  const navigation = useNavigation();
-  const pathname = usePathname()
+  
 
   return (
-    <SafeAreaView >
+   
         <SWView flexDirection="row" backgroundColor="primary" height={75} borderBottomLeftRadius="ms" borderBottomRightRadius="ms" paddingHorizontal="s"> 
             <SWView  justifyContent="center" alignItems="center" borderRadius="s">
             <Image resizeMode="contain" height={56} width={56} source={require("@assets/images/headerLogo.png")}/>
@@ -30,7 +29,7 @@ const LogoHeader = ({ surface = "background",title}: PageHeaderType) => {
 
         </SWView>
   
-    </SafeAreaView>
+
   );
 };
 

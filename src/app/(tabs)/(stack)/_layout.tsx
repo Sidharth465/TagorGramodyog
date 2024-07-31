@@ -22,6 +22,7 @@ initialRouteName='index'
             <Stack.Screen name = "mycomplaints/index"options={{headerShown:false,}}   />
             <Stack.Screen name = "sites/index"options={{headerShown:false,}}   />
             <Stack.Screen name = "trackSupervisor/index"options={{headerShown:false,}}   />
+            <Stack.Screen name = "mapView/index"options={{headerShown:false,}}   />
 
           </Stack>
   )

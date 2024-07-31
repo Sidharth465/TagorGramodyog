@@ -1,14 +1,14 @@
 import FloatingAddButton from "@/src/library/components/FloatingAddButton";
 import SVHeader from "@/src/library/components/SVHeader";
+import { SafeAreaView } from "react-native-safe-area-context";
 import SWView from "@/src/library/components/SView";
 import Text from "@/src/library/components/SVText";
-import AddComplaintsForm from "@/src/library/container/AddComplaintsForm";
 import Backdrop from "@/src/library/container/Backdrop";
 import UploadImageComplaints from "@/src/library/container/UploadImageComplaints";
 import { useAppSelector } from "@/src/library/redux/hooks";
 import palette from "@/src/library/theme/palette";
 import React, { useState } from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { Image,  StyleSheet, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
 const Sites = () => {

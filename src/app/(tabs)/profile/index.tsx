@@ -5,10 +5,25 @@ import Text from "@/src/library/components/SVText";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import theme from "@/src/library/theme/theme";
 import { GlobeSvg, LockSvg, Logout, NotificationSvg } from "@/src/utils/Svgs";
+import { router } from "expo-router";
+import { useAppDispatch } from "@/src/library/redux/hooks";
+import { setOtpVisible } from "@/src/library/redux/slices/appSlice";
 
 export function Linktile({ title, type }: any) {
+  const dispatch = useAppDispatch()
+  function handlePress (){
+   
+    
+    if(type ==4 ){
+       console.log("pressed");
+dispatch(setOtpVisible(false))
+       router.replace("/")
+       router.dismissAll()
+     
+    }
+  }
   return (
-    <Pressable>
+    <Pressable onPress={()=>handlePress()}>
       <SWView
        backgroundColor="link_tile_bg" 
        marginVertical="sss"

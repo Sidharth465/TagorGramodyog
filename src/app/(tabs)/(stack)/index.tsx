@@ -8,15 +8,16 @@ import {
   SiteSvg,
   TableReportSvg,
 } from "@/src/utils/Svgs";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   Dimensions,
   FlatList,
   Image,
   Pressable,
-  SafeAreaView,
 } from "react-native";
 
 
@@ -56,7 +57,7 @@ const Home = () => {
 
     }else if(title == "Provide Feedback"){
       console.log("Provide Feedback")
-      router.push("/provideFeedback")
+      router.push("/feedback")
     }else {
       return;
     }
@@ -65,6 +66,7 @@ const Home = () => {
   }
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:palette?.chip_box  }}>
+   
       <LogoHeader title="Maintained by Tagore Gramodyog Vikas Samiti" />
 
       <SWView flex={1} justifyContent="center" alignItems="center">

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SVHeader from "@/src/library/components/SVHeader";
 import SWView from "@/src/library/components/SView";
-import { FlatList, Image, TextInput } from "react-native";
+import { FlatList, Image, Pressable, TextInput } from "react-native";
 import palette from "@/src/library/theme/palette";
 import Text from "@/src/library/components/SVText";
+import { router } from "expo-router";
 
 const TrackSupervisor = () => {
   const [name, setName] = useState("");
@@ -68,7 +69,8 @@ const TrackSupervisor = () => {
                 supervisorData
               }
               renderItem={({ item, index }) => (
-                <SWView
+               <Pressable onPress={()=>{router.push("/mapView"),console.log("pressed")}}>
+                 <SWView
                   flexDirection="row"
                   alignItems="center"
                   justifyContent="space-between"
@@ -89,6 +91,7 @@ const TrackSupervisor = () => {
                   </SWView>
                   <Text  fontSize={17} fontFamily="gilroy-bold" color={item?.status?.toLowerCase() == "available"?"primary":item?.status?.toLowerCase() == "unavailable" ?"errorRed":"secondary_light" }>{item?.status}</Text>
                 </SWView>
+               </Pressable>
               )}
             />
           </SWView>
